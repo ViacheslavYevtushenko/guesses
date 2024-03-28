@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>"Шибениця"</title>
+</head>
+
+<body>
+	<h1>"Шибениця"</h1>
+	<script>
+		// var name = prompt("Как вас зовут?");
+		// console.log("Привет " + name);
+
+		// Створюємо масив із слівю
+		// 1. "анна","робота","єдиноріг"
+		// 2. Змінює велику літеру на малу guess = guess.toLowerCase();
+		// 3. Обмежена кількість спроб var guesses = 20;
+		// while ( && guesses > 0)
+		// Зменшення кількісті спроб guesses--;
+		// if (guesses > 0) {
+		// alert("Отлично! Было загадано слово " + word);
+		//  } else {
+		// alert("Очень плохо! Было загадано слово " + word);
+		//  }
+		var words = [
+			"програма",
+			"макака",
+			"орочимару",
+			"млинці",
+			"анна",
+			"робота",
+			"єдиноріг"
+		];
+		// Обираємо випадкове слова
+		var word = words[Math.floor(Math.random() * words.length)];
+		// Встановлюємо масив відповідей
+		var answerArray = [];
+		for (var i = 0; i < word.length; i++) {
+			answerArray[i] = "_";
+		}
+		var remainingLetters = word.length;
+		// Обмежена кількість спроб
+		var guesses = 20;
+		// Ігровий цикл
+		while (remainingLetters > 0 && guesses > 0) {
+			// Показуємо гравцю його прогрес
+			alert(answerArray.join(" "));
+			// Отримуємо варіанти відповідей від гравця
+			var guess = prompt("Вгадайте літеру або натисніть Отмена, щоб вийти з гри.");
+			if (guess === null) {
+				// Виходимо із ігрового циклу
+				alert("Ви вийшли з гри")
+				break;
+			} else if (guess.length !== 1) {
+				alert("Будь ласка, введіть лише одну літеру.");
+			} else {
+				// Зменшення кількісті спроб
+				guesses--;
+				// Змінює велику літеру на малу
+				guess = guess.toLowerCase();
+				// Оновлюємо стан гри за допомогою змінного параметра guess
+				for (var j = 0; j < word.length; j++) {
+					if (word[j] === guess) {
+						answerArray[j] = guess;
+						remainingLetters--;
+					}
+				}
+				// Кінець ігрового циулц
+			}
+		}
+		// Показуємо відповідь і вітаємо гравця
+		alert(answerArray.join(" "));
+		if (guesses > 0) {
+			alert("Чудово! Було загадане слово " + word);
+		} else {
+			alert("Дуже погано! Було загадане слово " + word);
+		}
+	</script>
+</body>
+
+</html>
